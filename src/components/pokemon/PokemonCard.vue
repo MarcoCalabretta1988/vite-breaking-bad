@@ -15,7 +15,7 @@ export default {
 
 <template>
     <div class="col pokemon-card p-3 text-center ">
-        <div class="card-content text-white py-3" :style="`background-color:${color}`">
+        <div class="card-content py-3" :style="`background-color:${color}`">
             <img :src="img" :alt="name">
             <h5 class="m-2">#{{ number }}</h5>
             <h4>{{ name }}</h4>
@@ -30,6 +30,7 @@ export default {
     .card-content {
         border-radius: 20px;
         height: 300px;
+        text-shadow: 1px 1px white;
         border: 1px solid black;
 
         img {
