@@ -14,7 +14,9 @@ export default {
 <template>
     <div class="container" id="main-board">
         <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5">
-            <pokemon-card v-for="pokemon in store.pokemons" :key="store.pokemons.id" :name="pokemon.name"
+            <h1 v-if="store.isLoading" class="text-center text-white">
+                Loading...</h1>
+            <pokemon-card v-else v-for="pokemon in store.pokemons" :key="store.pokemons.id" :name="pokemon.name"
                 :img="pokemon.imageUrl" :color="pokemon.color" :type="pokemon.type1"
                 :number="pokemon.number"></pokemon-card>
         </div>
@@ -29,6 +31,10 @@ export default {
     border-radius: 20px;
     background-color: $dark-grey;
     min-height: calc(100vh - 200px);
+
+    h1 {
+        margin: 20px auto;
+    }
 
 }
 </style>
