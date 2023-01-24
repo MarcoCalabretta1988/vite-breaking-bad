@@ -10,17 +10,22 @@ export default {
     return { store }
   },
   components: { AppHeader, AppMain },
+  methods: {
+    fetchPokemons(url) {
+      store.isLoading = true;
+      axios.get(url)
+        .then(res => {
+          store.pokemons = res.data.docs;
+        }).catch(error => {
+          console.log(error);
+          store.pokemons = [];
+        }).then(() => {
+          store.isLoading = false;
+        });
+    }
+  },
   created() {
-    store.isLoading = true;
-    axios.get('https://41tyokboji.execute-api.eu-central-1.amazonaws.com/dev/api/v1/pokemons?per=10&page=1')
-      .then(res => {
-        store.pokemons = res.data.docs;
-      }).catch(error => {
-        console.log(error);
-        store.pokemons = [];
-      }).then(() => {
-        //store.isLoading = false;
-      });
+    this.fetchPokemons('https://41tyokboji.execute-api.eu-central-1.amazonaws.com/dev/api/v1/pokemons?per=10&page=1');
   }
 
 }
