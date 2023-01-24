@@ -41,8 +41,8 @@ export default {
 <template>
     <div class="container" id="main-board">
         <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5">
-            <pokemon-card v-for="pokemon in pokemons" :name="pokemon.name" :img="pokemon.img" :type="pokemon.type1"
-                :number="pokemon.number"></pokemon-card>
+            <pokemon-card v-for="pokemon in pokemons" :key="pokemons.id" :name="pokemon.name" :img="pokemon.img"
+                :type="pokemon.type1" :number="pokemon.number"></pokemon-card>
         </div>
     </div>
 </template>
