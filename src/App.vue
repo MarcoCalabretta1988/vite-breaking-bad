@@ -9,13 +9,24 @@ export default {
   data() {
     return {
       store,
-      apiUri: 'https://41tyokboji.execute-api.eu-central-1.amazonaws.com/dev/api/v1/pokemons?per=10&page=1',
+      apiTypeUri: 'https://41tyokboji.execute-api.eu-central-1.amazonaws.com/dev/api/v1/pokemons/types1',
+      apiUri: 'https://41tyokboji.execute-api.eu-central-1.amazonaws.com/dev/api/v1/pokemons',
+      page: 1,
+      per: 500,
+      typeSelected: ''
     }
   },
   components: { AppHeader, AppMain },
+  computed: {
+    actualApiUri() {
+      const selectedUrl = `${this.apiUri}?per=${this.per}&page=${this.page}`;
+      return selectedUrl
+    }
+  },
   methods: {
     fetchPokemons(url) {
       store.isLoading = true;
+
       axios.get(url)
         .then(res => {
           store.pokemons = res.data.docs;
@@ -25,10 +36,32 @@ export default {
         }).then(() => {
           store.isLoading = false;
         });
+    },
+    fetchPokemonsType(url) {
+      store.isLoading = true;
+
+      axios.get(url)
+        .then(res => {
+          store.type = res.data;
+        }).catch(error => {
+          console.log(error);
+          store.type = [];
+        }).then(() => {
+          store.isLoading = false;
+        });
+
+    },
+    typeChoise(type) {
+      this.typeSelected = type;
+      const searcUrlAdd = !type ? this.actualApiUri : `${this.actualApiUri}&eq[type1]=${type}`;
+      console.log(searcUrlAdd);
+      this.fetchPokemons(searcUrlAdd);
+
     }
   },
   created() {
-    this.fetchPokemons(this.apiUri);
+    this.fetchPokemons(this.actualApiUri);
+    this.fetchPokemonsType(this.apiTypeUri);
   }
 
 }
@@ -37,7 +70,7 @@ export default {
 
 <template>
   <app-header></app-header>
-  <app-main></app-main>
+  <app-main @choise-change="typeChoise"></app-main>
 </template>
 
 <style lang="scss">

@@ -14,13 +14,13 @@ export default {
 </script>
 
 <template>
-    <div class="col pokemon-card p-3 text-center ">
+    <div class="col pokemon-card p-2 text-center ">
         <div class="card-content py-3" :class="type.toLowerCase()">
             <figure>
-                <img :src="img" :alt="name">
+                <img :src="img" :alt="name" class="img-fluid">
             </figure>
             <h5 class="m-2">#{{ number }}</h5>
-            <h4>{{ name }}</h4>
+            <h5>{{ name }}</h5>
             <div class="type">{{ type }}</div>
         </div>
     </div>
@@ -53,6 +53,7 @@ export default {
             img {
                 width: 100px;
                 height: 100px;
+                border-radius: 20%;
 
             }
         }
@@ -124,6 +125,10 @@ export default {
 
     .dragon {
         background-color: rgb(57, 117, 247);
+    }
+
+    .flying {
+        background-color: rgb(231, 101, 25);
     }
 
 

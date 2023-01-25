@@ -7,7 +7,7 @@ export default {
 
 <template>
     <header>
-        <div class="container d-flex justify-content-between align-items-center h-100">
+        <div class="my-container d-flex justify-content-between align-items-center h-100">
             <div class="lens d-flex">
                 <img src="../assets/img/blu_lens.png" alt="Blu lens">
                 <figure class="mx-4 d-flex justify-content-center align-items-center">
