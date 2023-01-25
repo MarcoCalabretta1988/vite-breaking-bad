@@ -1,6 +1,7 @@
 <script>
 import AppBoard from './AppBoard.vue';
 import SelectForm from './SelectForm.vue';
+import SearchForm from './SearchForm.vue';
 
 
 import { store } from '../data/store';
@@ -10,8 +11,8 @@ export default {
     data() {
         return { store }
     },
-    components: { AppBoard, SelectForm },
-    emits: ['choise-change', 'to-display', 'change-page'],
+    components: { AppBoard, SelectForm, SearchForm },
+    emits: ['choise-change', 'to-display', 'change-page', 'change-term'],
     methods: {
         typeChoise(type) {
             this.$emit('choise-change', type)
@@ -21,6 +22,9 @@ export default {
         },
         changePage(direction) {
             this.$emit('change-page', direction)
+        },
+        onThermChange(term) {
+            this.$emit('change-term', term)
         }
 
 
@@ -36,6 +40,7 @@ export default {
                 <select-form :options-list="store.type" default-text="Tutti" @choise-change="typeChoise"></select-form>
                 <select-form :options-list="[10, 20, 30, 50, 100]" default-text="N°Pokemon"
                     @choise-change="toDisplay"></select-form>
+                <search-form @term-change="onThermChange" placeholder="Cerca Pokemon"></search-form>
             </nav>
             <app-board @change-page="changePage"></app-board>
         </div>

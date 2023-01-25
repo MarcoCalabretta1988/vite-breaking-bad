@@ -81,6 +81,14 @@ export default {
 
       this.typeChoise(this.typeSelected)
 
+    },
+    onThermChange(term) {
+      if (!term)
+        store.isDisplayChange = false
+      else
+        store.isDisplayChange = true
+      const searcUrlAdd = !term ? this.actualApiUri : `${this.actualApiUri}&q[name]=${term}`;
+      this.fetchPokemons(searcUrlAdd);
     }
   },
   created() {
@@ -94,7 +102,8 @@ export default {
 
 <template>
   <app-header></app-header>
-  <app-main @choise-change="typeChoise" @to-display="ToDisplay" @change-page="fetchPage"></app-main>
+  <app-main @choise-change="typeChoise" @to-display="ToDisplay" @change-page="fetchPage"
+    @change-term="onThermChange"></app-main>
 </template>
 
 <style lang="scss">
