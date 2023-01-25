@@ -14,13 +14,16 @@ export default {
         }
     },
     components: { AppBoard, SelectForm },
-    emits: ['choise-change', 'to-display'],
+    emits: ['choise-change', 'to-display', 'change-page'],
     methods: {
         typeChoise(type) {
             this.$emit('choise-change', type)
         },
         toDisplay(number) {
             this.$emit('to-display', number)
+        },
+        changePage(direction) {
+            this.$emit('change-page', direction)
         }
 
 
@@ -37,7 +40,7 @@ export default {
                 <select-form :options-list="[10, 20, 30, 50, 100]" default-text="N°Pokemon"
                     @choise-change="toDisplay"></select-form>
             </nav>
-            <app-board :is-change="numberToDisplayChange"></app-board>
+            <app-board :is-change="numberToDisplayChange" @change-page="changePage"></app-board>
         </div>
     </main>
 </template>

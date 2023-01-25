@@ -12,6 +12,12 @@ export default {
     },
     props: {
         IsChange: Boolean
+    },
+    emits: ['change-page'],
+    methods: {
+        fetchPage(direction) {
+            this.$emit('change-page', direction)
+        }
     }
 
 }
@@ -24,7 +30,8 @@ export default {
             <pokemon-card v-else v-for="pokemon in store.pokemons" :key="store.pokemons.id" :name="pokemon.name"
                 :img="pokemon.imageUrl" :type="pokemon.type1" :number="pokemon.number"></pokemon-card>
         </div>
-        <simple-paginator v-if="!IsChange"></simple-paginator>
+        <simple-paginator v-if="!IsChange" :next-disabled="!store.next" :prev-disabled="!store.prev"
+            @page-changed="fetchPage"></simple-paginator>
     </div>
 </template>
 

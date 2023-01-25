@@ -25,5 +25,9 @@ ul {
   gap: 20px;
   font-size: 30px;
   cursor: pointer;
+
+  .disabled {
+    cursor: no-drop;
+  }
 }
 </style>

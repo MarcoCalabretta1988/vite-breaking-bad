@@ -27,9 +27,14 @@ export default {
     fetchPokemons(url) {
       store.isLoading = true;
 
+
+
       axios.get(url)
         .then(res => {
           store.pokemons = res.data.docs;
+          store.next = res.data.hasNextPage
+          store.prev = res.data.hasPrevPage
+
         }).catch(error => {
           console.log(error);
           store.pokemons = [];
@@ -59,6 +64,16 @@ export default {
     ToDisplay(number) {
       this.per = number;
       this.typeChoise(this.typeSelected)
+    },
+    fetchPage(direction) {
+      console.log(direction)
+      if (!store[direction]) return
+
+      if (direction === 'next')
+        this.page++
+      else
+        this.page--
+      this.fetchPokemons(this.actualApiUri);
     }
   },
   created() {
@@ -72,7 +87,7 @@ export default {
 
 <template>
   <app-header></app-header>
-  <app-main @choise-change="typeChoise" @to-display="ToDisplay"></app-main>
+  <app-main @choise-change="typeChoise" @to-display="ToDisplay" @change-page="fetchPage"></app-main>
 </template>
 
 <style lang="scss">
