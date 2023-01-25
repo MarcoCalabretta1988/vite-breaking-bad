@@ -9,7 +9,8 @@ export default {
     },
 
     props: {
-        optionsList: Array
+        optionsList: Array,
+        defaultText: String
     },
     emits: ['choise-change'],
 
@@ -17,8 +18,8 @@ export default {
 </script>
 
 <template>
-    <select class="form-select" v-model=selectChoise @change="$emit('choise-change', selectChoise)">
-        <option value="" selected>Tutti</option>
+    <select class="form-select my-3" v-model=selectChoise @change="$emit('choise-change', selectChoise)">
+        <option value="" selected>{{ defaultText }}</option>
         <option v-for="option in optionsList" :value="option">{{ option }}</option>
 
     </select>

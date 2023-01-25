@@ -9,11 +9,16 @@ export default {
         return { store }
     },
     components: { AppBoard, SelectForm },
-    emits: ['choise-change'],
+    emits: ['choise-change', 'to-display'],
     methods: {
         typeChoise(type) {
             this.$emit('choise-change', type)
+        },
+        toDisplay(number) {
+            this.$emit('to-display', number)
         }
+
+
     }
 
 }
@@ -23,7 +28,9 @@ export default {
     <main>
         <div class="my-container d-flex">
             <nav class="mx-3">
-                <select-form :options-list="store.type" @choise-change="typeChoise"></select-form>
+                <select-form :options-list="store.type" default-text="Tutti" @choise-change="typeChoise"></select-form>
+                <select-form :options-list="[20, 30, 50, 100]" default-text="N°Pokemon"
+                    @choise-change="toDisplay"></select-form>
             </nav>
             <app-board></app-board>
         </div>

@@ -12,7 +12,7 @@ export default {
       apiTypeUri: 'https://41tyokboji.execute-api.eu-central-1.amazonaws.com/dev/api/v1/pokemons/types1',
       apiUri: 'https://41tyokboji.execute-api.eu-central-1.amazonaws.com/dev/api/v1/pokemons',
       page: 1,
-      per: 500,
+      per: 10,
       typeSelected: ''
     }
   },
@@ -54,9 +54,11 @@ export default {
     typeChoise(type) {
       this.typeSelected = type;
       const searcUrlAdd = !type ? this.actualApiUri : `${this.actualApiUri}&eq[type1]=${type}`;
-      console.log(searcUrlAdd);
       this.fetchPokemons(searcUrlAdd);
-
+    },
+    ToDisplay(number) {
+      this.per = number;
+      this.typeChoise(this.typeSelected)
     }
   },
   created() {
@@ -70,7 +72,7 @@ export default {
 
 <template>
   <app-header></app-header>
-  <app-main @choise-change="typeChoise"></app-main>
+  <app-main @choise-change="typeChoise" @to-display="ToDisplay"></app-main>
 </template>
 
 <style lang="scss">
