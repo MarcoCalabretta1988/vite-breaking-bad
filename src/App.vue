@@ -87,8 +87,14 @@ export default {
         store.isDisplayChange = false
       else
         store.isDisplayChange = true
-
-      const searcUrlAdd = !term ? this.actualApiUri : `${this.actualApiUri}&q[name]=${term}`;
+      console.log(this.typeSelected)
+      let searcUrlAdd = ''
+      if (!this.typeSelected) {
+        searcUrlAdd = !term ? this.actualApiUri : `${this.actualApiUri}&q[name]=${term.toLowerCase()}`;
+      }
+      else {
+        searcUrlAdd = !term ? this.actualApiUri : `${this.actualApiUri}&eq[type1]=${this.typeSelected.toLowerCase()}&q[name]=${term}`;
+      }
       this.fetchPokemons(searcUrlAdd);
     }
   },
