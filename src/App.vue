@@ -27,8 +27,6 @@ export default {
     fetchPokemons(url) {
       store.isLoading = true;
 
-
-
       axios.get(url)
         .then(res => {
           store.pokemons = res.data.docs;
@@ -57,6 +55,8 @@ export default {
 
     },
     typeChoise(type) {
+      if (type !== this.typeSelected)
+        this.page = 1;
       this.typeSelected = type;
       const searcUrlAdd = !type ? this.actualApiUri : `${this.actualApiUri}&eq[type1]=${type}`;
       this.fetchPokemons(searcUrlAdd);
@@ -72,14 +72,15 @@ export default {
       this.typeChoise(this.typeSelected)
     },
     fetchPage(direction) {
-      console.log(direction)
       if (!store[direction]) return
 
       if (direction === 'next')
         this.page++
       else
         this.page--
-      this.fetchPokemons(this.actualApiUri);
+
+      this.typeChoise(this.typeSelected)
+
     }
   },
   created() {
