@@ -1,12 +1,17 @@
 <script>
 import { store } from '../data/store';
 import PokemonCard from './pokemon/PokemonCard.vue';
+import SimplePaginator from './SimplePaginator.vue';
 import Loader from './Loader.vue';
+
 export default {
     name: 'AppBoard',
-    components: { PokemonCard, Loader },
+    components: { PokemonCard, Loader, SimplePaginator },
     data() {
         return { store }
+    },
+    props: {
+        IsChange: Boolean
     }
 
 }
@@ -19,6 +24,7 @@ export default {
             <pokemon-card v-else v-for="pokemon in store.pokemons" :key="store.pokemons.id" :name="pokemon.name"
                 :img="pokemon.imageUrl" :type="pokemon.type1" :number="pokemon.number"></pokemon-card>
         </div>
+        <simple-paginator v-if="!IsChange"></simple-paginator>
     </div>
 </template>
 

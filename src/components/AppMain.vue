@@ -1,12 +1,17 @@
 <script>
 import AppBoard from './AppBoard.vue';
 import SelectForm from './SelectForm.vue';
+
+
 import { store } from '../data/store';
 
 export default {
     name: 'App main',
     data() {
-        return { store }
+        return {
+            store,
+            numberToDisplayChange: false
+        }
     },
     components: { AppBoard, SelectForm },
     emits: ['choise-change', 'to-display'],
@@ -27,12 +32,12 @@ export default {
 <template>
     <main>
         <div class="my-container d-flex">
-            <nav class="mx-3">
+            <nav class="mx-3" id="main-nav">
                 <select-form :options-list="store.type" default-text="Tutti" @choise-change="typeChoise"></select-form>
-                <select-form :options-list="[20, 30, 50, 100]" default-text="N°Pokemon"
+                <select-form :options-list="[10, 20, 30, 50, 100]" default-text="N°Pokemon"
                     @choise-change="toDisplay"></select-form>
             </nav>
-            <app-board></app-board>
+            <app-board :is-change="numberToDisplayChange"></app-board>
         </div>
     </main>
 </template>
@@ -43,7 +48,7 @@ export default {
 main {
     background-color: $red;
 
-    nav {
+    #main-nav {
         background-color: $dark-grey;
         border: 30px solid $light-grey;
         border-radius: 20px;
