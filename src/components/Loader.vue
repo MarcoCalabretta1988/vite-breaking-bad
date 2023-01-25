@@ -2,9 +2,11 @@
 export default {
 
 }
+
 </script>
 
 <template>
+
     <div class="loader text-center">
         <img src="../assets/img/logo.png" alt="Logo">
         <h1>Loading...</h1>

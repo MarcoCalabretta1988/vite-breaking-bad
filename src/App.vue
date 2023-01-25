@@ -7,7 +7,10 @@ import AppMain from './components/AppMain.vue';
 export default {
   name: 'App pokedex',
   data() {
-    return { store }
+    return {
+      store,
+      apiUri: 'https://41tyokboji.execute-api.eu-central-1.amazonaws.com/dev/api/v1/pokemons?per=10&page=1',
+    }
   },
   components: { AppHeader, AppMain },
   methods: {
@@ -25,7 +28,7 @@ export default {
     }
   },
   created() {
-    this.fetchPokemons('https://41tyokboji.execute-api.eu-central-1.amazonaws.com/dev/api/v1/pokemons?per=20&page=1');
+    this.fetchPokemons(this.apiUri);
   }
 
 }

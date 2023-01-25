@@ -17,8 +17,7 @@ export default {
         <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5">
             <loader v-if="store.isLoading"></loader>
             <pokemon-card v-else v-for="pokemon in store.pokemons" :key="store.pokemons.id" :name="pokemon.name"
-                :img="pokemon.imageUrl" :color="pokemon.color" :type="pokemon.type1"
-                :number="pokemon.number"></pokemon-card>
+                :img="pokemon.imageUrl" :type="pokemon.type1" :number="pokemon.number"></pokemon-card>
         </div>
     </div>
 </template>
