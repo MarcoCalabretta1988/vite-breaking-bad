@@ -30,7 +30,8 @@ export default {
     border: 30px solid $light-grey;
     border-radius: 20px;
     background-color: $dark-grey;
-    min-height: calc(100vh - 200px);
+    height: calc(100vh - 200px);
+    overflow: auto;
 
     h1 {
         margin: 20px auto;
