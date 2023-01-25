@@ -8,10 +8,7 @@ import { store } from '../data/store';
 export default {
     name: 'App main',
     data() {
-        return {
-            store,
-            numberToDisplayChange: false
-        }
+        return { store }
     },
     components: { AppBoard, SelectForm },
     emits: ['choise-change', 'to-display', 'change-page'],
@@ -40,7 +37,7 @@ export default {
                 <select-form :options-list="[10, 20, 30, 50, 100]" default-text="N°Pokemon"
                     @choise-change="toDisplay"></select-form>
             </nav>
-            <app-board :is-change="numberToDisplayChange" @change-page="changePage"></app-board>
+            <app-board @change-page="changePage"></app-board>
         </div>
     </main>
 </template>

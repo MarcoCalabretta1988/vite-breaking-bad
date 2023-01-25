@@ -63,6 +63,12 @@ export default {
     },
     ToDisplay(number) {
       this.per = number;
+      this.page = 1;
+      if (number === 10)
+        store.isDisplayChange = false
+      else
+        store.isDisplayChange = true
+
       this.typeChoise(this.typeSelected)
     },
     fetchPage(direction) {
