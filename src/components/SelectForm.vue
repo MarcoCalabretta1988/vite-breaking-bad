@@ -20,7 +20,7 @@ export default {
 <template>
     <select class="form-select my-3" v-model=selectChoise @change="$emit('choise-change', selectChoise)">
         <option value="" selected>{{ defaultText }}</option>
-        <option v-for="option in optionsList" :value="option">{{ option }}</option>
+        <option v-for="option in optionsList" :key="options" :value="option">{{ option }}</option>
 
     </select>
 </template>
