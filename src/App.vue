@@ -45,7 +45,7 @@ export default {
 
       axios.get(url)
         .then(res => {
-          store.type = res.data;
+          store.type = res.data.sort();
         }).catch(error => {
           console.log(error);
           store.type = [];
